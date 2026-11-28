@@ -1,6 +1,6 @@
 # Email automation: handoff
 
-Newsletter system for ravikirans.com. Self-hosted, near free. Last updated 28 Nov 2026.
+Newsletter system for ravikirans.com. Self-hosted, near free. Last updated 28 Nov 2026 (late evening, new chat).
 No passwords, API keys or access keys are stored here (this repo is public). Credentials live in the plugins and consoles.
 
 ## Read first: keep the repo current, warn about compaction
@@ -58,6 +58,7 @@ No passwords, API keys or access keys are stored here (this repo is public). Cre
 - 26 Nov: FluentSMTP connection removed (Ravikiran replaced it with SES). 27 Nov: DNS records removed; account closed via Settings > General > "Definitively close your account", with a code emailed to his Gmail that he entered himself. Nothing left to do.
 
 ## Pending
+- STATUS 28 Nov 2026 (late evening, new chat): Explore AWS widget now shows 4 of 6 done, $80 of $100 earned. RDS 'Create an Aurora or RDS database' = COMPLETED. EC2 = still 'In progress'; Lambda = Not started. RDS 'credit-activity-db' (the only DB in Sydney) is still Available: my delete attempt (no final snapshot, no retained backups) was BLOCKED by the permission classifier, so nothing was deleted and the dialog was cancelled. Needs his explicit OK in chat (or he deletes it himself), then retry. EC2 instance credit-activity-test is still running (not touched). Campaign 1 draft re-read (read only): status draft, subject 'Still want exam-prep tips?', short body with a button to ravikirans.com, list Newsletter + tag 3 (Batch 01). Not yet shown to him.
 - FIRST, AWS credit cleanup (he approved RDS and the extra $40 on 28 Nov 2026): in the built-in browser, Console Home > Explore AWS (scroll to it with scrollIntoViewIfNeeded; the pane is hidden so pages load slowly) and check whether EC2 and 'Create an Aurora or RDS database' show Completed. When RDS is Completed, delete RDS 'credit-activity-db' (Sydney, no final snapshot) and its managed Secrets Manager secret; when EC2 is Completed, terminate instance credit-activity-test (i-0b02a28422eb81ddf). Both cost credits while running. If still not Completed, recheck later. Cap needs 5 of 6; Lambda web function create hangs, so EC2 + RDS are the plan. A scheduled recheck fired in the old chat only, so do this in the new one.
 - When Ravikiran says go: send a one-contact test through FluentCRM (use a test tag), then Batch 01 (266), check bounces and complaints in SES, then the rest.
 - Welcome-back DRAFT: campaign id 1 "Welcome back - Batch 01", status draft, subject "Still want exam-prep tips?", preheader "A short weekly email on cloud and data certification prep", from Ravikiran Srinivasulu <contact@ravikirans.com>, list Newsletter + tag Batch 01 (266 confirmed in the UI). Short body with a button to ravikirans.com. Ravikiran has not reviewed it yet: show it. Do NOT schedule or send without his go-ahead.

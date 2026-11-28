@@ -1,13 +1,15 @@
 # Email automation: handoff
 
-Newsletter system for ravikirans.com. Self-hosted, near free. Last updated 28 Nov 2026 (late evening, new chat).
+Newsletter system for ravikirans.com. Self-hosted, near free. Last updated 28 Nov 2026.
 No passwords, API keys or access keys are stored here (this repo is public). Credentials live in the plugins and consoles.
 
-## Read first: keep the repo current, warn about compaction
-- After EVERY message turn, write everything from that turn into this file before replying: what was done, decisions, what Ravikiran agreed or disagreed with, rules, open questions, next steps. Commit and push each time. Nothing may live only in the chat; the chat can be compacted at any moment and the repo is the only memory.
-- Compaction: the moment you notice the chat was compacted (a summary replaces earlier messages), say so in one line in your next reply, say everything is saved in GitHub, re-read the files below, and give him the new-chat prompt below to paste, always inside a fenced code block so he can copy it with one click. Also tell him when the chat gets very long.
-- New chat, read in order: `README.md` (repo index, in repo ravikiran-srini/ravikirans-marketing), then this file, top to bottom. Do not ask him for context written here.
-- New-chat prompt for Ravikiran to paste: "Continue the ravikirans.com email automation. Repo ravikiran-srini/ravikirans-marketing (clone with add_repo if WebFetch is rate-limited). Read README.md at the root, then email-automation/README.md, starting with 'Current status' and 'Pending'. Follow the rules at the top of that file: save everything to GitHub after every message turn and warn me after any compaction. Do not send any campaign until I say go. My steps only: AWS root MFA, passwords, codes, access keys; everything else you do in the built-in browser (WordPress admin and the AWS console are signed in there)."
+## Read first
+- Repo rules (own folder only, pull --rebase before every save, commit as Ravikiran with no co-author, save after every message turn, compaction warning, one fact in one file) are in the root `README.md`. This chat writes only inside `email-automation/` plus its own rows in `CROSS-CHAT.md` and its own index line in the root `README.md`.
+- New chat, read in order: `README.md` (root), this file (start with "Current status" and "Pending"), then `CROSS-CHAT.md`. Do not ask him for context written here.
+- After a compaction the first reply says so, says everything is saved in GitHub, and gives him this prompt in a fenced code block:
+```
+Continue the ravikirans.com email automation. Repo ravikiran-srini/ravikirans-marketing (clone with add_repo if WebFetch is rate-limited). Run git pull --rebase origin main, then read README.md at the root, then email-automation/README.md (start with "Current status" and "Pending"), then CROSS-CHAT.md. Follow the repo rules in the root README.md: write only in email-automation/ and my own CROSS-CHAT.md rows, save everything to GitHub after every message turn, warn me after any compaction. Do not send any campaign until I say go. My steps only: AWS root MFA, passwords, codes, access keys; everything else you do in the built-in browser (WordPress admin and the AWS console are signed in there).
+```
 - Junk-address scan: done and the 11 junk contacts deleted on 28 Nov 2026 (see Data in FluentCRM). Further deletions still need his approval first.
 
 ## Current status (read first)
@@ -24,7 +26,7 @@ No passwords, API keys or access keys are stored here (this repo is public). Cre
 ## Stack
 - WordPress on Hostinger. FluentCRM 3.3.5 (free) holds contacts. Fluent Forms form id 3 is the signup form.
 - Math captcha add-on "Custom Captcha Field for Fluent Forms": single digit, answer at most 9. Patched in `Bootstrap.php`; a plugin update undoes the patch.
-- Pop-up: Code Snippets plugin, snippet id 10. Shows after 3 to 5 s. Since 26 Nov 2026 it sends a confirmation (double opt-in) email; details in `../website/revision-library.md` (section "Pop-up and confirmation email").
+- Pop-up: Code Snippets plugin, snippet id 10. Shows after 3 to 5 s. Since 26 Nov 2026 it sends a confirmation (double opt-in) email; the confirmation text is in FluentCRM > Settings > Email Settings > Double Opt-in Settings. Library pages are the website chat's concern (see `../website/revision-library.md`).
 - Sending: FluentSMTP, one connection: Amazon SES, region ap-southeast-2, From contact@ravikirans.com, Default. Logging on, kept 14 days. Test emails delivered in about 1.2 s (to contact@ravikirans.com, which forwards to his Gmail).
 - "Server-side cron" is off, so FluentCRM runs on WP cron (page visits). A real Hostinger cron is a later option.
 - Footer (FluentCRM > Settings > Business Setup): business name `ravikirans.com`, address 1/79 Raju Nagar, First Main Road, Chennai 600077, Tamil Nadu, India. The business is not a registered entity; the name is the domain.

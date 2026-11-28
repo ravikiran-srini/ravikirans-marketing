@@ -22,4 +22,3 @@ Shared by the website chat and the email chat (rules: root `README.md`). Each ch
 | Library pop-up: after a visitor verifies by pop-up they must not be asked for email again on Download (one verified state `rl_ok`; see `website/revision-library.md`) | Website chat | Waiting for Ravikiran's OK. Will touch snippet 10 for library pages only. |
 | Carousel PDFs in the newsletter: PDF button should point to the PDF page on the website | Email chat | Not built. First real PDF Mon 30 Nov. |
 | Gate email sender name "Ravikiran Srinivasulu" and delivery through SES | Website chat | Re-test on a real run (Mon 30 Nov onward). |
-| Commit author: email chat commits show author "Claude"; must be Ravikiran with no co-author (rule 5) | Email chat | Fix in its next commit. |

@@ -59,6 +59,11 @@ To do, in order:
 4. "Signup source" (see below).
 5. App plan: done, see `app-plan.md`.
 
+## Revision Library: one verified identity (his rule 28 Nov 2026, NOT built yet)
+- Rule: on the library page and its PDF pages, the pop-up collects the email. After that, Download PDF never asks for an email again, and a download works ONLY after the email is verified. Library only: here sign-ins come from two sources (pop-up form 3 and the download gate).
+- Gap found in the code (read only): the gate (snippet 12) trusts only cookie `rl_ok` (set by its own emailed link or a `?rlp=` personal link) and FluentCRM cookie `fc_hash_secure` (set when a subscriber opens a newsletter link). A pop-up signup is confirmed by FluentCRM's double opt-in link, which sets neither cookie. So today a person who verified through the pop-up is asked for their email again on Download. Not checked live: whether the pop-up (snippet 10) already skips library pages or verified visitors.
+- Proposed fix (waiting for his OK): one verified state = `rl_ok`. On library pages the pop-up uses the gate's flow (signed link: subscribes the contact and sets `rl_ok`); a verified visitor gets the PDF directly with no form and no pop-up; an unverified visitor who clicks Download sees the same pop-up, or 'Check your inbox' if the link was already sent. Cross-device fallback stays the rare 'Already subscribed? Enter your email'. Other pages keep the current pop-up unchanged.
+
 ## Signup source (undecided: now, or with the library)
 Popup form is Fluent Forms form 3 with hidden field `signup_page` = `{embed_post.permalink}` mapped to the FluentCRM custom field "Signup page". He wants ONE column called "Signup source": the page URL for ordinary popup signups, and the vendor or certification category for signups triggered by a PDF download. My recommendation: first source only, plus a tag "Downloaded: <vendor>" per later download. He has not chosen the timing.
 

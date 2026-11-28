@@ -8,7 +8,8 @@ No passwords, keys or tokens in this repo (it is public).
 - After EVERY message turn, write everything from that turn into the files in this repo before replying: what was done, decisions, what Ravikiran agreed and disagreed with, rules, open questions, next steps. Commit and push each time. Nothing may live only in the chat; assume the chat can be compacted at any moment and the repo is the only memory.
 - Put a fact in the one file where it belongs (index below) and keep that file free of repetition. A new topic gets its own file and a line in the index here and in `../README.md`. Do not append loose notes at the end of a file; put them in the right section, and replace outdated lines instead of stacking new ones.
 - Compaction: if the chat begins with a summary ("continued from a previous conversation") or you notice earlier messages were replaced, the FIRST reply must say, in plain words: the chat was compacted, the rules and all work are already saved in GitHub, nothing is lost. Then give him the new-chat prompt below inside a fenced code block, so he can copy it with one click, and re-read `../README.md` and this file before continuing. Also tell him when the chat has become very long.
-- At the start of every new chat: read `../README.md`, then this file, then the file for the topic at hand, then continue. Do not ask him for context that is written here.
+- At the start of every new chat: read `../README.md` (index, ownership map, repo rules), then this file, then `../CROSS-CHAT.md`, then the file for the topic at hand, then continue. Do not ask him for context that is written here.
+- Two chats share this repo. This chat writes only in its own area (list below) and only its own rows in `../CROSS-CHAT.md`; never in `../email-automation/`. Pull with rebase before every save. Full rules: `../README.md`.
 
 New-chat prompt (give it exactly like this, in a code block):
 
@@ -18,11 +19,15 @@ Continue my ravikirans.com website work. This chat is only about the website, th
 First attach my public GitHub repo ravikiran-srini/ravikirans-marketing with push access, then read these files in this order:
 1. README.md (index)
 2. website/README.md (hub: rules, job state, scheduled checks, open items)
-3. the file for today's topic from the index in website/README.md
-4. tools/NIGHTLY.md (the morning build rules) if the work touches the carousels
+3. CROSS-CHAT.md (items shared with the email chat)
+4. the file for today's topic from the index in website/README.md
+5. tools/NIGHTLY.md (the morning build rules) if the work touches the carousels
 
-Follow the standing rules in website/README.md. Commit as me with no Claude co-author, save all work and decisions to the repo after every message turn, and after any compaction tell me in your first reply that everything is saved and give me this prompt again.
+Follow the standing rules in website/README.md and the repo rules in README.md: write only in the website chat's own area, never in email-automation/. Commit as me with no Claude co-author, save all work and decisions to the repo after every message turn, and after any compaction tell me in your first reply that everything is saved and give me this prompt again.
 ```
+
+## This chat's area (the only place it writes)
+`website/`, `tools/`, `carousels/`, `library.json`, `plan.csv`, `today.json`, `items.csv`, `categories.csv`, `brand/`, `design/`, plus its own lines in `../README.md` and its own rows in `../CROSS-CHAT.md`. Not: `../email-automation/` (the email chat's; see the ownership map in `../README.md`).
 
 ## Index of the website handoff
 - `revision-library.md`: Revision Library design, live state, snippets, how the email gate works, tests, open rules (verified identity, Signup source), pop-up.
@@ -56,13 +61,12 @@ Follow the standing rules in website/README.md. Commit as me with no Claude co-a
 
 ## Open items (single list; remove a line when done)
 1. His answers pending: rename the signup column to "Signup source" now or with the library (I suggest now); the verified-identity rule fix (see `revision-library.md`); the app plan's open decision (sell in-app now or later); whether to also reduce the ads on other pages.
-2. Email chat: add `https://ravikirans.com/revision-library/?rlp={{rl.key}}` to newsletter emails and verify `{{rl.key}}` renders inside a link with a one-contact test.
-3. Re-test the gate email's sender name ("Ravikiran Srinivasulu") on a real run.
-4. Remove the unneeded "Custom Captcha Field for Fluent Forms" add-on when he agrees (still active).
-5. Analytics: choose between Zernio and LinkedIn after the 7 Dec comparison; then decide about a weekly pull into the repo (see `social-and-analytics.md`).
-6. Verify on Wed 2 Dec whether Make emails "Daily LinkedIn post skipped" on non-posting days.
+2. Items shared with the email chat (personal newsletter link, Signup source rename, captcha add-on, newsletter PDF button, sender name re-test): see `../CROSS-CHAT.md`.
+3. Analytics: choose between Zernio and LinkedIn after the 7 Dec comparison; then decide about a weekly pull into the repo (see `social-and-analytics.md`).
+4. Verify on Wed 2 Dec whether Make emails "Daily LinkedIn post skipped" on non-posting days.
 
 ## Decisions log (dated, newest first)
+- 28 Nov: two-chat structure agreed: website chat and email chat each write only in their own folder; shared items go in `../CROSS-CHAT.md`; ownership map and repo rules are in `../README.md`. Nothing had been lost in the earlier cross-writing (checked: the email chat's one edit here was kept).
 - 28 Nov: PDFs stay in the public repo, folder `carousels/`; no private repo (he accepted that the email step can be skipped by someone who finds the GitHub link).
 - 28 Nov: "Revision Library" added to the Main Menu and Footer Menu; Facebook, X and the LinkedIn first comment link to the website PDF page, not GitHub (he agreed).
 - 28 Nov: Revision Library page published (his OK). Ads switched off on library pages only. Footer logo made the same size as the header logo.

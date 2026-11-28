@@ -1,105 +1,70 @@
-# Website, Revision Library and carousel jobs: handoff
+# Website, Revision Library and carousel jobs: handoff hub
 
-Site work for ravikirans.com (WordPress on Hostinger, Olsen Light theme). Last updated 27 Nov 2026.
+Site work for ravikirans.com (WordPress on Hostinger, Olsen Light theme). Last updated 28 Nov 2026 (night).
 Newsletter, SES and the email list are a separate chat: see `../email-automation/README.md`. Do not work on SES here.
 No passwords, keys or tokens in this repo (it is public).
 
 ## Read first: keep the repo current, warn about compaction
-- After EVERY message turn, write everything from that turn into the files in this repo before replying: what was done, decisions, what he agreed and disagreed with, rules, open questions, next steps. Commit and push each time. Nothing may live only in the chat; assume the chat can be compacted at any moment and the repo is the only memory.
-- Keep this file and the index in `../README.md` accurate and free of repetition. Put new topics in their own file and add them to the index.
-- Compaction reminder: the moment you notice the chat has been compacted (a summary replaces earlier messages), tell Ravikiran in your next reply, in one line. Say that everything is saved in GitHub, then re-read `README.md` and this file before continuing. Also tell him when the chat has become very long, so he can start a new one with the prompt in his handoff.
-- At the start of every new chat: read `README.md`, then this file, then continue. Do not ask him for context that is written here.
+- After EVERY message turn, write everything from that turn into the files in this repo before replying: what was done, decisions, what Ravikiran agreed and disagreed with, rules, open questions, next steps. Commit and push each time. Nothing may live only in the chat; assume the chat can be compacted at any moment and the repo is the only memory.
+- Put a fact in the one file where it belongs (index below) and keep that file free of repetition. A new topic gets its own file and a line in the index here and in `../README.md`. Do not append loose notes at the end of a file; put them in the right section, and replace outdated lines instead of stacking new ones.
+- Compaction: if the chat begins with a summary ("continued from a previous conversation") or you notice earlier messages were replaced, the FIRST reply must say, in plain words: the chat was compacted, the rules and all work are already saved in GitHub, nothing is lost. Then give him the new-chat prompt below inside a fenced code block, so he can copy it with one click, and re-read `../README.md` and this file before continuing. Also tell him when the chat has become very long.
+- At the start of every new chat: read `../README.md`, then this file, then the file for the topic at hand, then continue. Do not ask him for context that is written here.
+
+New-chat prompt (give it exactly like this, in a code block):
+
+```
+Continue my ravikirans.com website work. This chat is only about the website, the Revision Library and the carousel PDFs. Email and Amazon SES are handled in another chat, so skip them.
+
+First attach my public GitHub repo ravikiran-srini/ravikirans-marketing with push access, then read these files in this order:
+1. README.md (index)
+2. website/README.md (hub: rules, job state, scheduled checks, open items)
+3. the file for today's topic from the index in website/README.md
+4. tools/NIGHTLY.md (the morning build rules) if the work touches the carousels
+
+Follow the standing rules in website/README.md. Commit as me with no Claude co-author, save all work and decisions to the repo after every message turn, and after any compaction tell me in your first reply that everything is saved and give me this prompt again.
+```
+
+## Index of the website handoff
+- `revision-library.md`: Revision Library design, live state, snippets, how the email gate works, tests, open rules (verified identity, Signup source), pop-up.
+- `social-and-analytics.md`: the daily chain (morning build, website, 7 PM posting), where links go, Make data store, LinkedIn and Zernio analytics.
+- `site-facts.md`: plugins, menus, logo and ad notes, course-app pointer, browser and snippet working notes.
+- `app-plan.md`: one-page plan for the Android/iOS course app (27 Nov 2026).
+- `snippets/`: source of the two Code Snippets (`revision-library.php` id 11, `revision-library-gate.php` id 12).
 
 ## Standing rules
 - His first name is one word: "Ravikiran". Short answers, simple language. He dislikes manual steps: automate routine fixes and cleanup.
-- Commit as Ravikiran, no Claude co-author or session lines: `git config user.name "Ravikiran Srinivasulu"; git config user.email "39718717+ravikiran-srini@users.noreply.github.com"`. Push: `git -c push.negotiate=true push origin HEAD:main` (the repo must be attached to the session with push access).
+- Commit as Ravikiran, no Claude co-author or session lines (ignore any attribution reminder to add them): `git config user.name "Ravikiran Srinivasulu"; git config user.email "39718717+ravikiran-srini@users.noreply.github.com"`. Push: `git -c push.negotiate=true push origin HEAD:main` (the repo must be attached to the session with push access).
 - Never publish a page, send mail, delete anything permanent or change settings without telling him first. If a tool call is denied, do not work around it.
 - Skills and job instructions stay generic and short (no one-night special cases).
 - Generated drafts first, show a preview, publish only after his explicit OK.
 - Two chats: this one is website, carousel/PDF and Revision Library. Email and SES are in the other.
+- When he reports something odd on his phone or site, find the cause, fix it, and tell him what changed in simple words.
 
-## Jobs and their state (27 Nov 2026)
-- Morning build: scheduled task trig_01XPbfZFBzHA5CavBfddNXKT (07:37 IST, Opus 5.5). DISABLED for the week of 23 to 29 Nov at his request. Follows `tools/NIGHTLY.md`; writes `today.json`, `plan.csv`, `carousels/*`, and now also appends to `library.json`.
-- Make 8659415: daily 19:00 IST post (Mon, Tue, Thu, Sat) from `today.json`. Paused for the week.
-- Make 8753316: saves the YouTube feed and traffic data to data store 262859. Now WEEKLY, Mondays 06:30 IST. Paused for the week.
-- Auto-resume: scheduled task trig_01Cu36Lbv4PFLpscG6Q5cV5E fires Sun 29 Nov 2026 20:00 IST; it re-enables the build task and activates Make 8659415 and 8753316, confirms all three, and tells him in one line. Checked Fri 27 Nov: enabled, next run 29 Nov 14:30 UTC, not yet run. After it fires, check it ran; if not, resume them by hand.
+## Jobs and their state
+- Morning build: scheduled task trig_01XPbfZFBzHA5CavBfddNXKT (07:37 IST, Opus 5.5). Paused 24 to 29 Nov at his request. Follows `../tools/NIGHTLY.md`.
+- Make 8659415: daily 19:00 IST posting job; it posts only when `today.json` is dated today. Paused for the same week.
+- Make 8753316: saves the YouTube feed and traffic data to data store 262859, weekly, Mondays 06:30 IST. Paused for the same week.
+- Auto-resume: scheduled task trig_01Cu36Lbv4PFLpscG6Q5cV5E fires Sun 29 Nov 2026 20:00 IST; it re-enables the build task and activates Make 8659415 and 8753316 (exactly these two Make scenarios stay active). Checked Sat 28 Nov: enabled, next run 29 Nov 14:30 UTC, not yet run.
 - Old reminder trig_01D73gDKiZbYwBbjb9oj9vLk (the 24 Nov 08:45 check) could not be disabled (denied). It may fire into an old chat; ignore it.
-- Make 8640867: delete only after about a week and on his explicit say-so. Make 8660956: delete only on his explicit "delete".
+- Make 8640867 (old flow): delete only after about a week and on his explicit say-so. Make 8660956: delete only on his explicit "delete".
 
-## Revision Library (built 26 to 27 Nov 2026)
-Design he approved:
-1. A page grouped by category, newest first; each entry has cover, title, date, Download button. Filled automatically by the morning job from `library.json` (he edits nothing).
-2. A "Quick Revision" box at the end of every study guide linking to that category on the library page. Applies to existing and new guides by itself.
-3. A small public page per PDF (summary, cover, download button, related guide, his Udemy course).
-4. Email gate: the download link is EMAILED (no attachment, no instant download). Clicking it confirms and subscribes the person and sets a cookie so the gate is skipped afterwards. Existing subscribers are recognised through personal links in newsletter emails (no re-entering email). A rare "Already subscribed? Enter your email" fallback is fine. No gate beyond email. Free on LinkedIn too; that is fine.
-5. Later: a one-page plan for the Android/iOS course app (see below).
+## Scheduled checks (into the website chat; report each to him in 2 lines)
+- Sun 29 Nov 20:30 IST: auto-resume ran; build task and Make 8659415 and 8753316 on; exactly two Make scenarios active; fix by hand if not.
+- Mon 30 Nov 08:30 IST: morning build done (today.json dated 30 Nov and ready, new PDF and cover in `carousels/`, plan.csv row, `library.json` entry); library page and the PDF page show it. Then test the gate with this first real PDF as a logged-out visitor: no email means no PDF from the page or the direct download link.
+- Mon 30 Nov 19:20 IST: Make 8659415 posted (LinkedIn with first comment, Page reshare, Facebook, X), no duplicates; X text under 220 characters with the website link.
+- Mon 7 Dec 10:00 IST: compare Zernio and LinkedIn analytics post by post for the posts of 30 Nov, 1, 3 and 5 Dec; tell him which to use.
 
-Done:
-- Code Snippets snippet id 11 "Revision Library (page + Quick Revision box)", active, run everywhere. Source copy: `website/snippets/revision-library.php` (paste there if the snippet is ever lost). It adds the shortcode `[revision_library]` and a `the_content` filter for the box. It reads `library.json` from raw.githubusercontent.com (cached 1 hour in the transient `rl_library_items`).
-- The box shows only when the guide's category has at least one PDF in `library.json`, so there are no dead links while the library is empty.
-- WordPress page "Revision Library", id 50437, slug `revision-library`, status PUBLISHED (28 Nov 2026, on his OK), contains the shortcode. Empty state reads "Quick revision PDFs are on the way". Preview: https://ravikirans.com/?page_id=50437&preview=true (signed in).
-- `library.json` created empty: `{"items": []}`. `tools/NIGHTLY.md` step 6 now appends an item for each `post` and `category` PDF.
-- Tested with stubs (grouping, sort, box); not yet tested live with a real entry.
-- 27 Nov: per-PDF page and email gate written as `website/snippets/revision-library-gate.php` (second snippet, needs snippet 11 for `rl_items`; snippet 11 now lets admins bypass the 1-hour cache). Helper tests pass with stubs. Install state: see "To do".
-- How the gate works:
-  - `/revision-library/<slug>/` is served through the Revision Library page itself (rewrite to `pagename=revision-library`), so it is public only while that page is published; admins see it in draft. No separate switch.
-  - Form (email) -> signed link emailed (7 days, one PDF, nothing created yet) -> click creates or confirms the FluentCRM contact (list Newsletter, tag "Downloaded: <category>"; new contacts also tag "Website signup" and the signup field gets the category), sets cookie `rl_ok` (1 year), then the PDF is streamed through the site (the GitHub address is never shown). An unsubscribed contact is not resubscribed (FluentCRM guard) but still gets the PDF.
-  - Raw GitHub PDF links stay public (accepted: the same PDFs are free on LinkedIn).
-  - Old subscribers pass through personal links: the snippet registers the FluentCRM smartcode `{{rl.key}}`; newsletter links use `https://ravikirans.com/revision-library/?rlp={{rl.key}}` (the email chat adds them). FluentCRM's own cookie `fc_hash_secure` also counts. Fallback: same form, same email.
-  - Spam control: hidden honeypot, 3 emails per address and 10 per IP per hour.
-- Tested live 27 Nov with a sample entry and a test contact (form, emailed link, confirm, subscribe, cookie, PDF streamed at original size, visitor 404 while the page is a draft, bad link, unknown slug). Test contact, its tag and the sample entry were removed afterwards.
+## Open items (single list; remove a line when done)
+1. His answers pending: rename the signup column to "Signup source" now or with the library (I suggest now); the verified-identity rule fix (see `revision-library.md`); the app plan's open decision (sell in-app now or later); whether to also reduce the ads on other pages.
+2. Email chat: add `https://ravikirans.com/revision-library/?rlp={{rl.key}}` to newsletter emails and verify `{{rl.key}}` renders inside a link with a one-contact test.
+3. Re-test the gate email's sender name ("Ravikiran Srinivasulu") on a real run.
+4. Remove the unneeded "Custom Captcha Field for Fluent Forms" add-on when he agrees (still active).
+5. Analytics: choose between Zernio and LinkedIn after the 7 Dec comparison; then decide about a weekly pull into the repo (see `social-and-analytics.md`).
+6. Verify on Wed 2 Dec whether Make emails "Daily LinkedIn post skipped" on non-posting days.
 
-`library.json` item format: `{"slug":"<date>-<slug>","title","category","category_slug","date","cover","pdf","summary","guide_url"}` (cover and pdf are raw GitHub URLs; category_slug comes from `categories.csv` and must equal the WordPress category slug).
-
-To do, in order:
-1. Done 27 Nov: gate installed (Code Snippets id 12 "Revision Library PDF pages + email gate", active; id 11 updated) and tested. Admin preview: add `?rl_visitor=1` to a PDF page to see the visitor view. Not tested end to end: the personal `?rlp=` link (key format only); verify it with the email chat's one-contact test.
-2. DONE 28 Nov: Revision Library page published on his OK (public check: 200, empty message; unknown slug 404). The first real PDF fills the page and the boxes.
-- 28 Nov: on his phone, Google ads (side "Discover more" box + video banner, from the sidebar AdSense widget) overlaid the library page. Fixed in the gate snippet: the sidebar ad widget is skipped on /revision-library/ and its PDF pages (filter widget_display_callback). Live in snippet 12 (commit 0bff2f8); checked at phone width: no ad code. The same ads still show on other pages; his call whether to change them.
-3. Email chat: add the personal link above to newsletter emails (verify `{{rl.key}}` renders inside a link with a one-contact test).
-4. "Signup source" (see below).
-5. App plan: done, see `app-plan.md`.
-
-## Revision Library: one verified identity (his rule 28 Nov 2026, NOT built yet)
-- Rule: on the library page and its PDF pages, the pop-up collects the email. After that, Download PDF never asks for an email again, and a download works ONLY after the email is verified. Library only: here sign-ins come from two sources (pop-up form 3 and the download gate).
-- Gap found in the code (read only): the gate (snippet 12) trusts only cookie `rl_ok` (set by its own emailed link or a `?rlp=` personal link) and FluentCRM cookie `fc_hash_secure` (set when a subscriber opens a newsletter link). A pop-up signup is confirmed by FluentCRM's double opt-in link, which sets neither cookie. So today a person who verified through the pop-up is asked for their email again on Download. Not checked live: whether the pop-up (snippet 10) already skips library pages or verified visitors.
-- Proposed fix (waiting for his OK): one verified state = `rl_ok`. On library pages the pop-up uses the gate's flow (signed link: subscribes the contact and sets `rl_ok`); a verified visitor gets the PDF directly with no form and no pop-up; an unverified visitor who clicks Download sees the same pop-up, or 'Check your inbox' if the link was already sent. Cross-device fallback stays the rare 'Already subscribed? Enter your email'. Other pages keep the current pop-up unchanged.
-
-## Signup source (undecided: now, or with the library)
-Popup form is Fluent Forms form 3 with hidden field `signup_page` = `{embed_post.permalink}` mapped to the FluentCRM custom field "Signup page". He wants ONE column called "Signup source": the page URL for ordinary popup signups, and the vendor or certification category for signups triggered by a PDF download. My recommendation: first source only, plus a tag "Downloaded: <vendor>" per later download. He has not chosen the timing.
-
-## Popup and confirmation email
-- Popup = Code Snippets snippet id 10, form 3. On 26 Nov 2026 the FluentCRM feed on form 3 got double opt-in turned on, the form message was changed to "Almost done! Check your inbox...", and the double opt-in email and thank-you text were reworded (FluentCRM > Settings > Email Settings > Double Opt-in Settings). The math captcha plugin is no longer needed; he asked about removing it (add-on "Custom Captcha Field for Fluent Forms"); checked 27 Nov: the add-on is still active (not removed).
-- Delivery of confirmation emails depends on SES, which is handled in the email chat.
-
-## Site facts
-- Plugins: FluentCRM 3.3.5 free, Fluent Forms 6.2.17 free, FluentSMTP 7.1.5, Code Snippets, Yoast SEO, Pretty Links, Wordfence, Akismet, Ninja Forms, Reading Progress Bar, WPFront Scroll Top, Advanced Editor Tools, Fixed Widget. WordPress and several plugins have updates pending.
-- Study guides are normal posts (Gutenberg, `.entry-content`, category plus tags). Example guide id 50370. Structure: entry-meta-top, title, entry-meta-bottom, featured image, entry-content, tags, utils, related, comments.
-- Logo change done on the site. The old logo in the browser tab is only browser cache: the site serves the new icon (`cropped-site-icon-512-*.png`); a hard refresh or another browser shows it.
-- Pretty Links: /linkedIn points to an expired affiliate link (left alone). Facebook, Twitter and YouTube links not yet checked.
-- Open, low priority: Gravatar and sidebar photo (he does them), AdSense propagation, LinkedIn groups reposting (skipped).
-
-## Course app (not started)
-He wants a simple Android and iOS app with three sections: video courses people can buy in the app, timed test questions so users can judge their knowledge, and a library of the category-by-category carousel PDFs, each linked to its course (course-specific PDFs later). He may connect a Teachable-style account to the website later. The Revision Library and `library.json` are meant to be reusable as the app's PDF source. One-page plan written 27 Nov 2026: `app-plan.md` (waiting for his answer on selling in-app now or later).
-
-## Working notes
-- Built-in browser (browser_repl) is signed in to WordPress admin. Set a wide viewport (`setViewportSize({width:1300,height:1000})`) or admin content hides. Reuse tab variables; declaring the same name twice fails.
-- Create a page through the REST API from an admin page: `fetch('/wp-json/wp/v2/pages', {method:'POST', headers:{'X-WP-Nonce': wpApiSettings.nonce, ...}})`.
-- Code Snippets editor: `document.querySelector('.CodeMirror').CodeMirror.setValue(code)`, then "Save and Activate".
-- A PHP snippet is linted with `php -l` before pasting; Code Snippets has safe mode if one breaks the site.
-
-- 28 Nov: logo sizes. Header logo was 70% wide on phones (old Additional CSS rule `#masthead a img`), footer 100% (phones) and 320px max (desktop). Footer rule in Appearance > Customize > Additional CSS is now `#footer .site-logo img{width:70%;max-width:400px}`: header and footer logos are equal at phone, tablet and desktop (210 / 400 / 400 px, measured). Old footer rule was `max-width:320px`.
-
-- 28 Nov: three checks scheduled into this chat: Sun 29 Nov 20:30 IST (auto-resume ran; build task + Make 8659415 and 8753316 on; exactly two active), Mon 30 Nov 08:30 (morning build, today.json, library entry live), Mon 30 Nov 19:20 (Make 8659415 posted to LinkedIn with first comment, Page reshare, Facebook, X). Posting channels: LinkedIn personal profile (Zernio, PDF post + first comment), LinkedIn Page reshare, Facebook and X (Buffer). Data store 262859 holds `ytfeed` (latest uploads, for video days; no view counts) and `traffic` (Search Console clicks per blog post, for `post` days only).
-- Open idea (his: "look later"): feed LinkedIn engagement back into content choice. Zernio exposes LinkedIn personal-profile analytics (impressions, reach, reactions, comments, saves) for posts published through Zernio, all of ours are; no new tool needed if his Zernio plan includes it (an Analytics add-on may be required; not checked). Alternative with no cost: read the LinkedIn analytics page in his signed-in browser weekly.
-
-- 28 Nov: Zernio check (his dashboard, Billing + Analytics): Free plan, 2 of 2 accounts (LinkedIn profile + RAVIKIRANS Page), no card. Zernio now bills per account (first 2 free, all features included, analytics too). The Analytics page works on his plan and shows LinkedIn data for 30 days: 27 posts, reach 229, impressions 436, likes/comments 0, "No posts with engagement". Numbers look too low or incomplete (LinkedIn personal profiles give limited analytics and need the r_member_postAnalytics scope): compare with LinkedIn's own analytics for 2-3 posts before trusting. Make already holds a Zernio API key connection (13150349), so Make can pull GET /v1/analytics.
-- Plan (proposed, not yet approved): 1) verify Zernio numbers against LinkedIn's own for a few posts; 2) weekly pull of per-post reach/reactions/comments into a data store key `engagement` or plan.csv columns; 3) after about 4 weeks (about 16 posts) add one short generic rule to tools/NIGHTLY.md: favour post types and categories with higher reach, keep 1 in 4 posts as a fresh test; 4) FB/X not covered (Buffer only).
-- PDF flow at 07:37: PDF and cover go to GitHub (carousels/), library.json gets the entry (category and post days only); the site reads library.json from GitHub (cached up to 1 hour) and streams the PDF from GitHub through the gate. Nothing is stored in the WordPress media library.
-
-- 28 Nov: analytics check done (his signed-in browser, same day). LinkedIn's own Content analytics, personal profile, 28 days: 1,443 impressions, 636 members reached, 14 engagements (3 reactions, 5 comments, 5 reposts, 1 save), per-post impressions (top posts 383, 252, 208), 78% in-network, demographics, Export button. Zernio, personal profile only, 30 days: 6 posts tracked, reach 711, 13 engagements, likes 2, comments 0; top-level tiles showed stale values (impressions 436, likes/comments 0) before a sync; syncs about hourly; no per-post impressions in the top-posts list. Account totals roughly agree, detail does not. DECISION proposed to him: LinkedIn's own analytics is the source of truth for what works; Zernio only as a cross-check and follower count. Next: weekly read of LinkedIn Content analytics (per-post impressions and engagements) into the repo as `engagement.csv`, needs his Mac on with the Claude desktop app open; awaiting his OK.
-
-- 28 Nov, his correction (accepted): Zernio was set up only about 1-2 weeks ago and nothing posted since 24 Nov, so it only holds the few posts published through it (6 on the profile); the earlier comparison was not like for like and does not show Zernio is worse. Decision withdrawn. LinkedIn's own analytics is complete for all history and stays the reference for now. Fair test: after the first week of posting (30 Nov, 1, 3, 5 Dec) compare post by post; check scheduled for Mon 7 Dec 10:00 IST into this chat. Note: his own automatic first comment may count in LinkedIn's comment total (not verified).
-
-- 28 Nov, decision (his): PDFs stay in the public repo ravikirans-marketing, folder `carousels/` (PDF + cover PNG per day); no private repo. Accepted: someone who finds the GitHub link can skip the email step; the PDF is also public on LinkedIn. Fully automatic chain, no manual step: 07:37 morning build writes PDF + cover to `carousels/`, today.json, plan.csv and (category and post days only) a `library.json` entry; the website reads `library.json` from GitHub (cached up to 1 hour) so the Revision Library page, the PDF page and the Quick Revision box on that category's study guides appear by themselves; 19:00 Make posts the PDF to LinkedIn (profile, first comment, Page reshare), Facebook and X. Nothing uploads to WordPress.
-
-- 28 Nov, done on his OK: (1) "Revision Library" added to Main Menu (after Resources; also shows in the mobile menu) and Footer Menu (Appearance > Menus; Study Guides submenu unchanged); live check: 3 links on the public page. (2) tools/NIGHTLY.md: on category and post days the morning job builds `pdf_page` = https://ravikirans.com/revision-library/<slug>/ and uses it as the link in `facebook` and `x`, and as a second comment line "Free PDF: " on LinkedIn; course, book and video days unchanged. Social links therefore go to the website (email gate), never to GitHub. No Make change needed (Make posts the text fields as they are). The PDF page exists as soon as the `library.json` line is pushed (page is drawn live by snippet 12; list cached up to 1 hour for visitors), which is hours before 19:00. Open: X posts must stay under 220 characters with the longer URL; first real run Mon 30 Nov will show.
+## Decisions log (dated, newest first)
+- 28 Nov: PDFs stay in the public repo, folder `carousels/`; no private repo (he accepted that the email step can be skipped by someone who finds the GitHub link).
+- 28 Nov: "Revision Library" added to the Main Menu and Footer Menu; Facebook, X and the LinkedIn first comment link to the website PDF page, not GitHub (he agreed).
+- 28 Nov: Revision Library page published (his OK). Ads switched off on library pages only. Footer logo made the same size as the header logo.
+- 28 Nov: Zernio vs LinkedIn analytics: his correction accepted (Zernio is new, so no like-for-like comparison yet); fair test planned for 7 Dec.
+- 27 Nov: library design approved; gate built and tested; app plan written; first PDF expected Mon 30 Nov after the auto-resume.

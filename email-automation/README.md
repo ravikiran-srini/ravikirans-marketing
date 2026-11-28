@@ -24,7 +24,7 @@ No passwords, API keys or access keys are stored here (this repo is public). Cre
 ## Stack
 - WordPress on Hostinger. FluentCRM 3.3.5 (free) holds contacts. Fluent Forms form id 3 is the signup form.
 - Math captcha add-on "Custom Captcha Field for Fluent Forms": single digit, answer at most 9. Patched in `Bootstrap.php`; a plugin update undoes the patch.
-- Pop-up: Code Snippets plugin, snippet id 10. Shows after 3 to 5 s. Since 26 Nov 2026 it sends a confirmation (double opt-in) email; details in `../website/README.md`.
+- Pop-up: Code Snippets plugin, snippet id 10. Shows after 3 to 5 s. Since 26 Nov 2026 it sends a confirmation (double opt-in) email; details in `../website/revision-library.md` (section "Pop-up and confirmation email").
 - Sending: FluentSMTP, one connection: Amazon SES, region ap-southeast-2, From contact@ravikirans.com, Default. Logging on, kept 14 days. Test emails delivered in about 1.2 s (to contact@ravikirans.com, which forwards to his Gmail).
 - "Server-side cron" is off, so FluentCRM runs on WP cron (page visits). A real Hostinger cron is a later option.
 - Footer (FluentCRM > Settings > Business Setup): business name `ravikirans.com`, address 1/79 Raju Nagar, First Main Road, Chennai 600077, Tamil Nadu, India. The business is not a registered entity; the name is the domain.
